@@ -1,3 +1,9 @@
+:root {
+  --foreground-color: white;
+  --background-color: rgb(29, 27, 27);
+  --background-color-light: rgb(59, 57, 27);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +12,90 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  box-sizing: border-box;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.text--big {
+  font-size: xx-large;
+}
+.text--centered {
+  text-align: center;
+}
+
+.button {
+  cursor: pointer;;
+}
+
+.button--icon {
+  border: none;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  font-size: xx-large;
+}
+
+.button--submit {
+  padding: 1rem;
+  text-transform: uppercase;
+  background-color: darkolivegreen;
+  color: var(--foreground-color);
+  border: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.form .label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 0.25rem;
+  align-self: stretch;
+}
+
+.form .label .input {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--foreground-color);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  align-self: stretch;
+}
+
+.form__error {
+  margin: 0.25rem 1rem 1rem 1rem;
+  color: red;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .expand {
+      animation: expand 0.1s linear;
+  }
+  .slide-in {
+    animation: slide-in 0.25s linear;
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: scaleY(0)
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100vw)
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

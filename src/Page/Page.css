@@ -1,0 +1,51 @@
+.page {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 8vmax calc(100vh - 8vmax);
+}
+
+.page--transparent {
+  background-color: transparent;
+}
+
+.page__header {
+  display: grid;
+  grid-template-areas: "area";
+  width: 100%;
+  align-items: center;
+  height: 8vmax;
+}
+
+.page__header--transparent {
+  background: none;
+  backdrop-filter: grayscale(1);
+}
+
+.header__title {
+  text-align: center;
+  grid-area: area;
+  z-index: 1;
+}
+
+.header__back-button {
+  width: fit-content;
+  height: fit-content;
+  background: none;
+  border: none;
+  color: var(--foreground-color);
+  cursor: pointer;
+  font-size: x-large;
+  grid-area: area;
+  z-index: 2;
+}
+
+
+.page__body {
+  height: calc(100vh - 8vmax);
+  display: flex;
+  flex-direction: column;
+}

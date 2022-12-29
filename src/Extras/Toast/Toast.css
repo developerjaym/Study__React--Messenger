@@ -1,0 +1,17 @@
+.toast {
+    width: 100vw;
+    height: fit-content;
+
+    font-size: x-large;
+    text-align: center;
+}
+
+.toast--happy {
+    background-color: darkgreen;
+    color: white;
+}
+
+.toast--sad {
+    background-color: red;
+    color: white;
+}

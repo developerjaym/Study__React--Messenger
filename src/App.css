@@ -1,38 +1,26 @@
-.App {
-  text-align: center;
-}
+.screen {
+  display: grid;
+  grid-template-areas: "area";
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-image: url(https://images.pexels.com/photos/391722/pexels-photo-391722.jpeg?cs=srgb&dl=android-wallaper-hd-wallpaper-iphone-wallpaper-391722.jpg&fm=jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-size: cover;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.toast {
+  grid-area: area;
+  z-index: 3;
+  place-self: end;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page {
+  grid-area: area;
+  z-index: 1;
 }

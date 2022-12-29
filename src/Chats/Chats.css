@@ -1,0 +1,15 @@
+.chats__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.chats__option {
+    margin-top: 0.5rem;
+    color: salmon;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}

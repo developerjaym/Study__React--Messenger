@@ -1,0 +1,29 @@
+.chat-menu__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 0.5rem;
+    text-decoration: none;
+    color: var(--foreground-color);
+    padding: 0.25rem;
+}
+
+.chat__icon {
+    background-color: firebrick;
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat__preview {
+    flex-grow: 2;
+    color: lightgray;
+}
+
+.chat__time {
+    font-size: small;
+}

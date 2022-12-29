@@ -1,0 +1,8 @@
+3.5. Git
+4. Start creating Profile endpoints
+5. Start creating Friends endpoints
+6. Start creating Chat endpoints
+8. Probably need a security context
+Bonus: 
+1. Games
+2. Search
