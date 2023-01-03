@@ -10,11 +10,11 @@ export default function Friends() {
   const [friends, setFriends] = useState({all: [
     {
       id: 1,
-      screenname: "bananna",
+      username: "bananna",
     },
     {
       id: 2,
-      screenname: "bballmike",
+      username: "bballmike",
     },
   ],
   hidden: [
@@ -27,7 +27,7 @@ export default function Friends() {
   return (
     <Page pageTitle="Friends">
       <Search label="Search friends" onSearch={(search) => {
-        setFriends({...friends, hidden: friends.all.filter(friend => !friend.screenname.toLowerCase().includes(search.term.toLowerCase()))}) 
+        setFriends({...friends, hidden: friends.all.filter(friend => !friend.username.toLowerCase().includes(search.term.toLowerCase()))}) 
       }} />
       <div className="friends__list">
         <button

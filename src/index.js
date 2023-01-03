@@ -57,7 +57,7 @@ const router = createHashRouter([
         element: <FriendDetail/>,
         loader: async ({request, params}) => {
           // TODO
-          return new Promise((resolve, reject) => resolve({"screenname": "bananna"}))
+          return new Promise((resolve, reject) => resolve({"username": "bananna"}))
         }
       },
       {
@@ -80,11 +80,11 @@ const router = createHashRouter([
             users: [
               {
                 id: 1,
-                screenname: "bananna",
+                username: "bananna",
               },
               {
                 id: 2,
-                screenname: "bballmike",
+                username: "bballmike",
               },
             ],
             messages: [
@@ -94,7 +94,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },
               {
@@ -103,7 +103,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },
               {
@@ -112,7 +112,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               }
               ,{
@@ -121,7 +121,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 5,
@@ -129,7 +129,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 6,
@@ -137,7 +137,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 7,
@@ -145,7 +145,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 8,
@@ -153,7 +153,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 9,
@@ -161,7 +161,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 10,
@@ -169,7 +169,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 11,
@@ -177,7 +177,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 12,
@@ -185,7 +185,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 13,
@@ -193,7 +193,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 14,
@@ -201,7 +201,7 @@ const router = createHashRouter([
                 content: "Hello, World middleish",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 15,
@@ -209,7 +209,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 16,
@@ -217,7 +217,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 17,
@@ -225,7 +225,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 18,
@@ -233,7 +233,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 19,
@@ -241,7 +241,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 20,
@@ -249,7 +249,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 21,
@@ -257,7 +257,7 @@ const router = createHashRouter([
                 content: "Hello, World",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               },{
                 id: 22,
@@ -265,7 +265,7 @@ const router = createHashRouter([
                 content: "Hello, World last",
                 author: {
                   id: 1,
-                  screenname: "bananna"
+                  username: "bananna"
                 }
               }
             ]

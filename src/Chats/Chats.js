@@ -15,18 +15,18 @@ export default function Chats() {
       preview: {
         user: {
           id: 1,
-          screenname: "bananna"
+          username: "bananna"
         },
         content: "hello, world"
       },
       users: [
         {
           id: 1,
-          screenname: "bananna",
+          username: "bananna",
         },
         {
           id: 2,
-          screenname: "bballmike",
+          username: "bballmike",
         },
       ],
     },
@@ -36,18 +36,18 @@ export default function Chats() {
       preview: {
         user: {
           id: 1,
-          screenname: "bananna"
+          username: "bananna"
         },
         content: "hello, world"
       },
       users: [
         {
           id: 1,
-          screenname: "bananna",
+          username: "bananna",
         },
         {
           id: 2,
-          screenname: "bballmike",
+          username: "bballmike",
         },
       ],
     },

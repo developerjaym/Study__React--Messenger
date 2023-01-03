@@ -23,12 +23,12 @@ export default function FriendDetail() {
     toaster.createToast('Friend deleted', ToastMoods.happy)
   }
   return (
-    <Page pageTitle={friend.screenname}>
+    <Page pageTitle={friend.username}>
       <div className="friend-detail">
         <div className="friend-detail__icon">
-          {friend.screenname[0].toUpperCase()}
+          {friend.username[0].toUpperCase()}
         </div>
-        <div className="friend-detail__name">{friend.screenname}</div>
+        <div className="friend-detail__name">{friend.username}</div>
 
         <menu className="friend__menu">
           <div className="friend__menu-option" onClick={onMessageFriend}>

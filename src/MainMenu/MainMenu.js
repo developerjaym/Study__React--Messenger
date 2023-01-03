@@ -1,13 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Page from "../Page/Page";
-import "./MainMenu.css";
-import { useEffect, useRef } from "react";
-import { toaster, ToastMoods } from "../Extras/Toast/Toaster";
-import Search from "../Search/Search";
+import AuthModal from "../Authentication/AuthModal";
 import { Icons } from "../Extras/Icons";
 import Modal from "../Extras/Modal/Modal";
+import { toaster, ToastMoods } from "../Extras/Toast/Toaster";
+import Page from "../Page/Page";
+import Search from "../Search/Search";
+import "./MainMenu.css";
 export default function MainMenu() {
-  const dialog = useRef(null);
   useEffect(() => {
     toaster.createToast("Welcome to Chat", ToastMoods.happy);
   }, []);
@@ -37,23 +37,7 @@ export default function MainMenu() {
         </nav>
         <Search label="Search Google" />
       </div>
-      <Modal modalTitle="Login">
-        <form className="form dialog__form">
-          <label className="label">
-            <span>Screenname</span>
-            <input className="input" />
-            <p className="form__error"></p>
-          </label>
-          <label className="label">
-            <span>Password</span>
-            <input type="password" className="input" />
-            <p className="form__error"></p>
-          </label>
-          <button className="button button--submit" type="submit">
-            Submit
-          </button>
-        </form>
-      </Modal>
+      <AuthModal/>
     </Page>
   );
 }
