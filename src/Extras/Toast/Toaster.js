@@ -21,7 +21,6 @@ class Toaster {
     this.#toastComponent.clear();
     window.clearInterval(this.#activeTimer);
     this.#activeTimer = window.setTimeout(() => {
-        console.log('clearing toast');
         this.#toastComponent.clear()
     }, Toaster.#TOAST_TIME)
     this.#toastComponent.createToast(message, mood)

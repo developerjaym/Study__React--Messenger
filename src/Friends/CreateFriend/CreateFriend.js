@@ -3,7 +3,7 @@ import "./CreateFriend.css"
 
 export default function CreateFriend() {
 
-    return (<Page pageTitle="Add friend">
+    return (<Page pageTitle="Add friend" backRoute="/friends">
         <form>
             <label>
                 Name

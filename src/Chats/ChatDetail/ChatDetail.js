@@ -17,7 +17,7 @@ export default function ChatDetail() {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" })
   }, [chat])
   return (
-    <Page pageTitle={chat.users.map((user) => user.username).join(", ")}>
+    <Page pageTitle={chat.users.map((user) => user.username).join(", ")} backRoute="/chats">
       <div className="chat">
         <div className="chat__message-list">{messageElements}</div>
       </div>

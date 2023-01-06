@@ -1,7 +1,7 @@
 import "./SignUpForm.css";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { Utilities } from "../../Extras/Utilities";
+import { chatAppHttpClient } from "../../Extras/Utilities";
 
 export default function SignUpForm({onTokenReceived}) {
     const formSchema = yup.object().shape({
@@ -18,38 +18,7 @@ export default function SignUpForm({onTokenReceived}) {
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            console.log(values);
-          // TODO send to my API
-          // THEN get the token
-          // THEN toast
-          var myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-          
-          var raw = JSON.stringify(values);
-          
-          var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
-          
-          fetch(Utilities.CORS_PROXY + "https://jayman.pythonanywhere.com/account", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-        //   fetch("users", {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(values, null, 2),
-        //   }).then((res) => {
-        //     if (res.status === 200) {
-        //       // TODO route
-        //     }
-        //   });
+            chatAppHttpClient.createChatter(values, onTokenReceived)
         },
       });
   return (

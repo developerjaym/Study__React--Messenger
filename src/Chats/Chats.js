@@ -56,7 +56,7 @@ export default function Chats() {
     <ChatMenuItem key={chat.id} chat={chat} />
   ));
   return (
-    <Page pageTitle="Conversations">
+    <Page pageTitle="Conversations" backRoute="/">
       <Search label="Search messages" onSearch={() => {}} />
       <div className="chats__list">
         <button

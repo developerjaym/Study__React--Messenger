@@ -6,6 +6,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 8vmax calc(100vh - 8vmax);
+  padding: 0;
 }
 
 .page--transparent {

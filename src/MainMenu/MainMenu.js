@@ -1,16 +1,11 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import AuthModal from "../Authentication/AuthModal";
+import { Link, useNavigate } from "react-router-dom";
 import { Icons } from "../Extras/Icons";
-import Modal from "../Extras/Modal/Modal";
-import { toaster, ToastMoods } from "../Extras/Toast/Toaster";
 import Page from "../Page/Page";
+import FakeSearch from "../Search/FakeSearch";
 import Search from "../Search/Search";
 import "./MainMenu.css";
 export default function MainMenu() {
-  useEffect(() => {
-    toaster.createToast("Welcome to Chat", ToastMoods.happy);
-  }, []);
+  const navigate = useNavigate()
   return (
     <Page transparent={true}>
       <div className="menu">
@@ -35,9 +30,8 @@ export default function MainMenu() {
             <label className="item__title">Profile</label>
           </Link>
         </nav>
-        <Search label="Search Google" />
+        <Search label="Search Google" onSearch={search => navigate({pathname: '/search', search: `?term=${search.term}`})}/>
       </div>
-      <AuthModal/>
     </Page>
   );
 }

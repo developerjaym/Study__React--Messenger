@@ -3,13 +3,13 @@ import Clock from "../Clock/Clock";
 import { Icons } from "../Extras/Icons";
 import "./Page.css";
 
-export default function Page({ pageTitle, children, transparent }) {
+export default function Page({ pageTitle, children, transparent, backRoute = -1 }) {
   const navigate = useNavigate();
   return (
     <div className={`page ${transparent ? "page--transparent" : "slide-in"}`}>
       {pageTitle ? (
         <div className="page__header">
-          <button className="header__back-button" onClick={() => navigate(-1)}>
+          <button className="header__back-button" onClick={() => navigate(backRoute)}>
             {Icons.BACK}
           </button>
           <h2 className="header__title">{pageTitle}</h2>

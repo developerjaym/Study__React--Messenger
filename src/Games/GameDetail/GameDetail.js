@@ -5,7 +5,7 @@ import "./GameDetail.css";
 export default function GameDetail() {
   const game = useLoaderData();
   return (
-    <Page pageTitle="Games">
+    <Page pageTitle="Games" backRoute="/games">
       <iframe
         src={game.link}
         title={game.name}

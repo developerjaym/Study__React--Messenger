@@ -23,7 +23,7 @@ export default function FriendDetail() {
     toaster.createToast('Friend deleted', ToastMoods.happy)
   }
   return (
-    <Page pageTitle={friend.username}>
+    <Page pageTitle={friend.username} backRoute="/friends">
       <div className="friend-detail">
         <div className="friend-detail__icon">
           {friend.username[0].toUpperCase()}

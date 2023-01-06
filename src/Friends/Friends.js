@@ -25,7 +25,7 @@ export default function Friends() {
     <FriendMenuItem key={friend.id} friend={friend} />
   ));
   return (
-    <Page pageTitle="Friends">
+    <Page pageTitle="Friends" backRoute="/">
       <Search label="Search friends" onSearch={(search) => {
         setFriends({...friends, hidden: friends.all.filter(friend => !friend.username.toLowerCase().includes(search.term.toLowerCase()))}) 
       }} />

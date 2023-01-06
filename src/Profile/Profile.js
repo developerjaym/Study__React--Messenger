@@ -41,7 +41,7 @@ export default function Profile() {
   });
 
   return (
-    <Page pageTitle="Profile">
+    <Page pageTitle="Profile" backRoute="/">
       <form
         className="form profile__form"
         onSubmit={formik.handleSubmit}

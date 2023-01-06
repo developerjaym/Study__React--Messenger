@@ -14,7 +14,7 @@ export default function Games() {
     const games = useLoaderData()
     const gameMenuList = games.map(game => (<GameMenuItem game={game} key={game.name} className="game__option"/>))
 
-    return (<Page pageTitle="Games">
+    return (<Page pageTitle="Games" backRoute="/">
     <div className="games__list">
         <button
           className="games__option"

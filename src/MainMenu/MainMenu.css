@@ -1,15 +1,9 @@
 .menu {
-
-  background-image: url(https://images.pexels.com/photos/391722/pexels-photo-391722.jpeg?cs=srgb&dl=android-wallaper-hd-wallpaper-iphone-wallpaper-391722.jpg&fm=jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-size: cover;
+  padding: 1rem;
 }
 .menu {
   width: 100%;
   height: 100%;
-  padding: 0.25rem;
   box-sizing: border-box;
   z-index: 1;
 

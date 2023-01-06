@@ -5,34 +5,26 @@ import {
   Navigate,
   RouterProvider
 } from "react-router-dom";
-import './index.css';
 import App from './App';
-import MainMenu from './MainMenu/MainMenu';
-import Chats from './Chats/Chats';
-import Friends from './Friends/Friends';
-import Games from './Games/Games';
-import reportWebVitals from './reportWebVitals';
-import Profile from './Profile/Profile';
-import FriendDetail from './Friends/FriendDetail/FriendDetail';
+import AuthPage from './Authentication/AuthPage';
 import ChatDetail from './Chats/ChatDetail/ChatDetail';
-import CreateFriend from './Friends/CreateFriend/CreateFriend';
+import Chats from './Chats/Chats';
 import CreateChat from './Chats/CreateChat/CreateChat';
-import GameDetail from './Games/GameDetail/GameDetail';
+import { chatAppHttpClient } from './Extras/Utilities';
+import CreateFriend from './Friends/CreateFriend/CreateFriend';
+import FriendDetail from './Friends/FriendDetail/FriendDetail';
+import Friends from './Friends/Friends';
 import CreateGame from './Games/CreateGame/CreateGame';
+import GameDetail from './Games/GameDetail/GameDetail';
+import Games from './Games/Games';
+import './index.css';
+import MainMenu from './MainMenu/MainMenu';
+import Profile from './Profile/Profile';
+import reportWebVitals from './reportWebVitals';
+import GoogleSearch from './Search/Google/GoogleSearch';
 
-const gameLoader = () => {
-  return [
-    {
-        name: "CrossIt",
-        link: "https://localstorage.tools/game/word/",
-        image: "https://localstorage.tools/game/image/cross_it_screenshot.png"
-    },
-    {
-        name: "LostInTrivia",
-        link: "https://localstorage.tools/trivia/app/",
-        image: "https://localstorage.tools/trivia/app/logo_squares.png"
-    },
-]
+const gameLoader = async () => {
+  return chatAppHttpClient.getAllGamesForUser()
 }
 
 const router = createHashRouter([
@@ -283,15 +275,22 @@ const router = createHashRouter([
       {
         path:"/games/:id",
         element: <GameDetail/>,
-        loader: ({request, params}) => gameLoader().find(game => game.name === params.id)
+        loader: async ({request, params}) => {
+          const allGames = await gameLoader()
+          return allGames.find(game => game.name === params.id)
+        }
       },
 
       {
         path:"/profile",
         element: <Profile/>
       },
+      {
+        path:"/search",
+        element: <GoogleSearch/>
+      },
     ],
-    errorElement:  <Navigate to="/" replace/>
+    errorElement: <AuthPage/>
   },
   
   {
