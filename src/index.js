@@ -23,9 +23,6 @@ import Profile from './Profile/Profile';
 import reportWebVitals from './reportWebVitals';
 import GoogleSearch from './Search/Google/GoogleSearch';
 
-const gameLoader = async () => {
-  return chatAppHttpClient.getAllGamesForUser()
-}
 
 const router = createHashRouter([
   {
@@ -39,18 +36,17 @@ const router = createHashRouter([
       {
         path:"/friends",
         element: <Friends/>,
+        loader: async ({request, params}) => chatAppHttpClient.getAllUsersFriends()
       },
       {
         path:"/friends/create",
         element: <CreateFriend/>,
+        loader: async ({request, params}) => chatAppHttpClient.getAllUsers()
       },
       {
-        path:"/friends/:id",
+        path:"/friends/:username",
         element: <FriendDetail/>,
-        loader: async ({request, params}) => {
-          // TODO
-          return new Promise((resolve, reject) => resolve({"username": "bananna"}))
-        }
+        loader: async ({request, params}) => chatAppHttpClient.getUser(params.username)
       },
       {
         path:"/chats",
@@ -267,7 +263,7 @@ const router = createHashRouter([
       {
         path:"/games",
         element: <Games/>,
-        loader: gameLoader
+        loader: chatAppHttpClient.getAllGamesForUser
       },
       {
         path:"/games/create",
@@ -276,7 +272,7 @@ const router = createHashRouter([
         path:"/games/:id",
         element: <GameDetail/>,
         loader: async ({request, params}) => {
-          const allGames = await gameLoader()
+          const allGames = await chatAppHttpClient.getAllGamesForUser()
           return allGames.find(game => game.name === params.id)
         }
       },

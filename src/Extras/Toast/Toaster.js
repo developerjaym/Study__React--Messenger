@@ -18,7 +18,7 @@ class Toaster {
     this.#toastComponent = newToastComponent;
   }
   createToast(message, mood) {
-    this.#toastComponent.clear();
+    this.#toastComponent?.clear();
     window.clearInterval(this.#activeTimer);
     this.#activeTimer = window.setTimeout(() => {
         this.#toastComponent.clear()

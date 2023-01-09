@@ -31,7 +31,6 @@ class Utilities {
   static get user() {
     if (Utilities.#authToken) {
       const claims = JSON.parse(atob(Utilities.#authToken.split(".")[1]));
-      console.log(claims);
       return claims["username"];
     }
     throw Error("no user");
@@ -149,6 +148,79 @@ class ChatAppHttpClient {
       .then((response) => response.json())
       .then(onDone)
       .catch(onError);
+  }
+
+  async getUser(username) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${username}`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
+  async getAllUsers() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
+  async getAllUsersFriends() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/friends`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
+  async addFriend(friend) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify(friend),
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/friends`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
   }
 }
 
