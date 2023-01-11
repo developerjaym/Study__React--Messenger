@@ -10,13 +10,23 @@
     row-gap: 1rem;
 }
 .message {
-    background-color: olivedrab;
     color: white;
     width: fit-content;
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-radius: 1rem;
     margin-top: 0.25rem;
 }
+
+.message--mine {
+    background-color: olivedrab;
+    align-self: flex-start;
+}
+
+.message--other {
+    background-color: indigo;
+    align-self: flex-end;
+}
+
 .chat__form {
     width: 100%;
     display: flex;

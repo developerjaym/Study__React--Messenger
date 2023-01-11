@@ -19,7 +19,7 @@ export default function CreateFriend() {
         validationSchema: formSchema,
         onSubmit: async (values) => {
             console.log('values', values);
-            chatAppHttpClient.addFriend(values)
+            await chatAppHttpClient.addFriend(values)
         //   chatAppHttpClient.getToken(values, onTokenReceived);
             navigate('/friends')
         },

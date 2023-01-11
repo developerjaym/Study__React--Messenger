@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { Icons } from "../Extras/Icons";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toaster, ToastMoods } from "../Extras/Toast/Toaster";
 import Page from "../Page/Page";
 import Search from "../Search/Search";
@@ -8,53 +7,11 @@ import "./Chats.css";
 
 export default function Chats() {
   const navigate = useNavigate()
-  const data = [
-    {
-      id: 1,
-      updatedAt: "2022-12-22",
-      preview: {
-        user: {
-          id: 1,
-          username: "bananna"
-        },
-        content: "hello, world"
-      },
-      users: [
-        {
-          id: 1,
-          username: "bananna",
-        },
-        {
-          id: 2,
-          username: "bballmike",
-        },
-      ],
-    },
-    {
-      id: 2,
-      updatedAt: "2022-12-23",
-      preview: {
-        user: {
-          id: 1,
-          username: "bananna"
-        },
-        content: "hello, world"
-      },
-      users: [
-        {
-          id: 1,
-          username: "bananna",
-        },
-        {
-          id: 2,
-          username: "bballmike",
-        },
-      ],
-    },
-  ];
+  const data = useLoaderData()
   const chatMenuList = data.map((chat) => (
     <ChatMenuItem key={chat.id} chat={chat} />
   ));
+
   return (
     <Page pageTitle="Conversations" backRoute="/">
       <Search label="Search messages" onSearch={() => {}} />

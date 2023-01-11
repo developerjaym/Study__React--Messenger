@@ -1,8 +1,5 @@
 4. Start creating Profile endpoints
-5. Start creating Friends endpoints
-    - Search Chatters
-    - Add Friends
+5. Friends stuff
     - Remove Friends
-6. Start creating Chat endpoints
+    - Navigate to a chat with Friend
 9. OG stuff
-Bonus: 

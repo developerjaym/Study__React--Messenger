@@ -49,4 +49,5 @@
   height: calc(100vh - 8vmax);
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }

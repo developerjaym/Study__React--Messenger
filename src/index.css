@@ -50,6 +50,17 @@ body {
   border: none;
 }
 
+.button--small {
+  font-size: medium;
+}
+
+.chip {
+  border-style: dotted;
+  border-color: var(--foreground-color);
+  border-width: 1px;
+  padding: 0.5rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;

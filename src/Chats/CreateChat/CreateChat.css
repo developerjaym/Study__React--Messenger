@@ -1,0 +1,15 @@
+.friend__selector {
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.friend__selector select {
+    flex-grow: 2;
+}
+
+.friend__chosen-area {
+    min-height: 3rem;
+}

@@ -87,6 +87,81 @@ class ChatAppHttpClient {
       .catch((error) => console.log("error", error));
   }
 
+  createChat(addedFriends, onChatCreated) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const raw = JSON.stringify(addedFriends);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    fetch(`${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => onChatCreated(result))
+      .catch((error) => console.log("error", error));
+  }
+
+  createMessage(conversationId, message, onMessageCreated) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const raw = JSON.stringify(message);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    fetch(`${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations/${conversationId}/messages`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => onMessageCreated(result))
+      .catch((error) => console.log("error", error));
+  }
+
+  async getChatById(id) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations/${id}`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
+  async getMessagesByConversationIdAndAfterId(conversationId, id) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations/${conversationId}/messages?after=${id}`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
   getToken(credentials, onTokenReceived) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -186,6 +261,25 @@ class ChatAppHttpClient {
     return json;
   }
 
+  async getAllUsersChats() {
+    console.log('getAllUsersChats', Utilities.user);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
   async getAllUsersFriends() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -226,4 +320,59 @@ class ChatAppHttpClient {
 
 const chatAppHttpClient = new ChatAppHttpClient();
 
-export { Utilities, chatAppHttpClient };
+
+class ChatPoller {
+  static #POLL_PERIOD = 750;
+  static #MAP = new Map();
+
+  #conversationId;
+  #listeners;
+  #timer;
+  #lastId;
+  #previousMessages;
+  constructor(conversationId) {
+    this.#conversationId = conversationId;
+    this.#lastId = 0;
+    this.#listeners = [(newMessages) => this.#previousMessages = [...this.#previousMessages, ...newMessages]];
+    this.#previousMessages = []
+  }
+
+  #addListener(onUpdate) {
+    onUpdate(this.#previousMessages)
+    this.#listeners.push(onUpdate)
+    if(this.#listeners.length === 2) {
+      // Got first external listener, time to start polling
+      this.#timer = window.setInterval(() => this.#poll(),ChatPoller.#POLL_PERIOD)
+    }
+  }
+
+  #removeListener(removeMe) {
+    console.log('removing listener', removeMe);
+    this.#listeners = this.#listeners.filter(listener => listener !== removeMe);
+    if(this.#listeners.length === 1) {
+      window.clearInterval(this.#timer)
+    }
+  }
+
+  async #poll() {
+    const newMessages = await chatAppHttpClient.getMessagesByConversationIdAndAfterId(this.#conversationId, this.#lastId);
+    this.#listeners.forEach(listener => listener(newMessages));
+    this.#lastId = newMessages.map(message => message.id).reduce((pre, cur) => cur > pre ? cur : pre, this.#lastId);
+  }
+
+  static subscribe(conversationId, onUpdate = (messages) => {}) {
+    if(!ChatPoller.#MAP.has(conversationId)) {
+      const newPoller = new ChatPoller(conversationId);
+      ChatPoller.#MAP.set(conversationId, newPoller);
+    }
+    const chatPoller = ChatPoller.#MAP.get(conversationId);
+    chatPoller.#addListener(onUpdate)
+    return () => ChatPoller.unsubscribe(conversationId, onUpdate);
+  }
+
+  static unsubscribe(conversationId, listener) {
+    ChatPoller.#MAP.get(conversationId).#removeListener(listener);
+  }
+}
+
+export { Utilities, chatAppHttpClient, ChatPoller };
