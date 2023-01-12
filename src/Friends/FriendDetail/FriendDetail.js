@@ -1,19 +1,32 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Icons } from "../../Extras/Icons";
 import { toaster, ToastMoods } from "../../Extras/Toast/Toaster";
+import { chatAppHttpClient } from "../../Extras/Utilities";
 import Page from "../../Page/Page";
 import "./FriendDetail.css";
 
 export default function FriendDetail() {
   const friend = useLoaderData();
   const navigate = useNavigate();
-  const onMessageFriend = (e) => {
-    // TODO
-    // ?PUT? a new conversation between current user and friend
-    // After that conversation's ID is returned from the back end,
-    //   then navigate to that chat
-    const pretendId = 1
-    navigate(`/chats/${pretendId}`)
+  const onMessageFriend = async (e) => {
+    const chatsWithOtherUser = await chatAppHttpClient.getAllUsersChats(friend.username);
+    const chatWithTheseTwoOnly = chatsWithOtherUser.reduce((pre, cur) => {
+      if(cur.chatters.map(chatter => chatter.username).length > 2) {
+        return pre;
+      }
+      return cur;
+    }, null);
+
+    if(chatWithTheseTwoOnly) {
+      navigate(`/chats/${chatWithTheseTwoOnly.id}`)
+    }
+    else {
+      chatAppHttpClient.createChat([friend.username], (response) => {
+        navigate(`/chats/${response.id}`)
+      })
+    }
+    //createChat
+   
   }
   const onDeleteFriend = (e) => {
     // TODO call back end and delete friend

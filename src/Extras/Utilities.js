@@ -135,8 +135,9 @@ class ChatAppHttpClient {
       headers: myHeaders,
       redirect: "follow",
     };
+    let url = `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations/${id}`
     const response = await fetch(
-      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations/${id}`,
+      url,
       requestOptions
     );
     const json = await response.json();
@@ -261,7 +262,7 @@ class ChatAppHttpClient {
     return json;
   }
 
-  async getAllUsersChats() {
+  async getAllUsersChats(withOtherUser = null) {
     console.log('getAllUsersChats', Utilities.user);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -273,7 +274,7 @@ class ChatAppHttpClient {
       redirect: "follow",
     };
     const response = await fetch(
-      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations`,
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/conversations${withOtherUser ? '?with='+withOtherUser : ''}`,
       requestOptions
     );
     const json = await response.json();
