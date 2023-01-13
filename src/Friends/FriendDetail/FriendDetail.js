@@ -28,12 +28,13 @@ export default function FriendDetail() {
     //createChat
    
   }
-  const onDeleteFriend = (e) => {
+  const onDeleteFriend = async (e) => {
     // TODO call back end and delete friend
-    // THEN navigate to friends list
     // THEN toast
-    navigate("/friends")
+    // THEN navigate to friends list
+    const response = await chatAppHttpClient.deleteFriend(friend.username)
     toaster.createToast('Friend deleted', ToastMoods.happy)
+    navigate("/friends")
   }
   return (
     <Page pageTitle={friend.username} backRoute="/friends">

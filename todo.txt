@@ -1,5 +1,8 @@
 4. Start creating Profile endpoints
-5. Friends stuff
-    - Remove Friends
-    - Navigate to a chat with Friend
+6. Conversations stuff
+    - Search messages    
+7. Security stuff
+    - See the hundred TODO comments in the python code    
+8. Game stuff
+    - Delete game (maybe a delete icon on the list page? Or maybe make a GameDetail page with options?)
 9. OG stuff

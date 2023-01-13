@@ -317,6 +317,23 @@ class ChatAppHttpClient {
     const json = await response.json();
     return json;
   }
+  async deleteFriend(friend) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/friends/${friend}`,
+      requestOptions
+    );
+    const text = await response.text()
+    return text;
+  }  
 }
 
 const chatAppHttpClient = new ChatAppHttpClient();
