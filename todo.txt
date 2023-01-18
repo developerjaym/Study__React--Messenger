@@ -1,8 +1,15 @@
 4. Start creating Profile endpoints
+5. Loading icons or something
+    - After I submit the login form, it hangs for a second
 6. Conversations stuff
     - Search messages    
 7. Security stuff
     - See the hundred TODO comments in the python code    
 8. Game stuff
     - Delete game (maybe a delete icon on the list page? Or maybe make a GameDetail page with options?)
+    - Change 'Game' stuff to 'App' stuff and pretend it's installing apps
+        - And have a table called 'Apps'
+            - id, name, image, link, description
+            - Populate that with data
+        - Then the user can visit the 'App store' and 'install' 'apps'    
 9. OG stuff
