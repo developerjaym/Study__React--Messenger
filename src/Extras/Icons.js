@@ -2,6 +2,15 @@ class Icons {
   static get GAME() {
     return "👾";
   }
+  static get SAVE() {
+    return "💾";
+  }
+  static get DOWNLOAD() {
+    return "⤓";
+  }
+  static get PLAY() {
+    return "ᐅ";
+  }
   static get MESSAGE() {
     return "💬";
   }

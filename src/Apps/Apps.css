@@ -1,16 +1,18 @@
-.games__list {
-    padding-left: 3rem;
+.apps__list {
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 1rem;
     padding-top: 0.5rem;
+    overflow-y: auto;
 }
 
-.games__option {
+.apps__option {
     margin-top: 0.5rem;
     color: salmon;
     background-color: transparent;
     border: none;
     text-align: left;
     cursor: pointer;
+    align-self: flex-start;
 }

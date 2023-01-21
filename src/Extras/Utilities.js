@@ -188,7 +188,24 @@ class ChatAppHttpClient {
       .catch((error) => console.log("error", error));
   }
 
-  async getAllGamesForUser() {
+  async getAllApps() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/apps`,
+      requestOptions
+    );
+    const json = await response.json();
+    return json;
+  }
+
+  async getAllAppsForUser() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
@@ -199,31 +216,50 @@ class ChatAppHttpClient {
       redirect: "follow",
     };
     const response = await fetch(
-      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/games`,
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/apps`,
       requestOptions
     );
     const json = await response.json();
     return json;
   }
 
-  createGameForUser(game, onDone, onError) {
+  createApp(app, onDone, onError) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
 
     const requestOptions = {
       method: "POST",
-      body: JSON.stringify(game),
+      body: JSON.stringify(app),
       headers: myHeaders,
       redirect: "follow",
     };
     fetch(
-      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/games`,
+      `${ChatAppHttpClient.#URL}/apps`,
       requestOptions
     )
       .then((response) => response.json())
       .then(onDone)
       .catch(onError);
+  }
+
+  async installAppForUser(appId) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify({id: appId}),
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    let response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/apps`,
+      requestOptions
+    )
+    let json = await response.json()
+    return json;
   }
 
   async getUser(username) {
@@ -317,6 +353,23 @@ class ChatAppHttpClient {
     const json = await response.json();
     return json;
   }
+  async deleteApp(appId) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${Utilities.authToken}`);
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      `${ChatAppHttpClient.#URL}/chatters/${Utilities.user}/apps/${appId}`,
+      requestOptions
+    );
+    const text = await response.text()
+    return text;
+  } 
   async deleteFriend(friend) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

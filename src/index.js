@@ -14,9 +14,9 @@ import { chatAppHttpClient } from './Extras/Utilities';
 import CreateFriend from './Friends/CreateFriend/CreateFriend';
 import FriendDetail from './Friends/FriendDetail/FriendDetail';
 import Friends from './Friends/Friends';
-import CreateGame from './Games/CreateGame/CreateGame';
-import GameDetail from './Games/GameDetail/GameDetail';
-import Games from './Games/Games';
+import CreateApp from './Apps/CreateApp/CreateApp';
+import AppDetail from './Apps/AppDetail/AppDetail';
+import Apps from './Apps/Apps';
 import './index.css';
 import MainMenu from './MainMenu/MainMenu';
 import Profile from './Profile/Profile';
@@ -32,6 +32,7 @@ const router = createHashRouter([
       {
         path:"/",
         element: <MainMenu/>,
+        loader: async ({request, params}) => chatAppHttpClient.getAllAppsForUser()
       },
       {
         path:"/friends",
@@ -64,19 +65,24 @@ const router = createHashRouter([
         loader: async ({request, params}) => chatAppHttpClient.getChatById(params.id)
       },
       {
-        path:"/games",
-        element: <Games/>,
-        loader: chatAppHttpClient.getAllGamesForUser
+        path:"/apps",
+        element: <Apps/>,
+        loader: async () => {
+          const all = await chatAppHttpClient.getAllApps()
+          const installed = await chatAppHttpClient.getAllAppsForUser()
+          return {installed, all}
+        }
       },
       {
-        path:"/games/create",
-        element: <CreateGame/>      },
+        path:"/apps/create",
+        element: <CreateApp/>      },
       {
-        path:"/games/:id",
-        element: <GameDetail/>,
+        path:"/apps/:id",
+        element: <AppDetail/>,
         loader: async ({request, params}) => {
-          const allGames = await chatAppHttpClient.getAllGamesForUser()
-          return allGames.find(game => game.name === params.id)
+          const allApps = await chatAppHttpClient.getAllApps()
+          const pertinent = allApps.find(app => app.id === Number(params.id))
+          return pertinent
         }
       },
 

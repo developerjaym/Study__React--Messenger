@@ -93,6 +93,10 @@ body {
   color: red;
 }
 
+.form__instructions {
+  font-weight: bold;
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {

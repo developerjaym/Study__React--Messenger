@@ -1,20 +1,26 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Icons } from "../Extras/Icons";
 import Page from "../Page/Page";
-import FakeSearch from "../Search/FakeSearch";
 import Search from "../Search/Search";
 import "./MainMenu.css";
 export default function MainMenu() {
   const navigate = useNavigate()
+  const usersApps = useLoaderData()
+  const usersAppsOptions = usersApps.map(userApp => (<Link key={userApp.id} to={`apps/${userApp.id}`} className="menu__item">
+  {userApp.image ? <img className="item__icon" src={userApp.image} alt={`Logo for ${userApp.name}`} height="28" width="28"/> :  <span className="item__icon">{Icons.GAME}</span>}
+  <label className="item__title">{userApp.name}</label>
+</Link>))
   return (
     <Page transparent={true}>
       <div className="menu">
         <nav className="menu__area menu__area--others">
-          <Link to="games" className="menu__item">
+          <Link to="apps" className="menu__item">
             <span className="item__icon">{Icons.GAME}</span>
-            <label className="item__title">Games</label>
+            <label className="item__title">App Store</label>
           </Link>
+          {usersAppsOptions}
         </nav>
+
 
         <nav className="menu__area menu__area--favorites">
           <Link to="chats" className="menu__item">

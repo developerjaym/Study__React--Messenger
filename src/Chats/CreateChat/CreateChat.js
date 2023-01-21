@@ -63,7 +63,7 @@ export default function CreateChat() {
           </div>
           <p className="form__error"></p>
         </label>
-        <button className="button button--submit" type="submit">
+        <button disabled={addedFriends.length === 0} className="button button--submit" type="submit">
           Start Chatting
         </button>
       </form>

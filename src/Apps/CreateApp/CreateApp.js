@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { chatAppHttpClient } from "../../Extras/Utilities";
 import Page from "../../Page/Page";
-import "./CreateGame.css";
+import "./CreateApp.css";
 
-export default function CreateGame() {
+export default function CreateApp() {
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter a name").max(32),
     link: yup.string().required("Must enter a link").max(256),
-    image: yup.string().required("Must enter an image").max(256)
+    image: yup.string().required("Must enter an image").max(256),
+    description: yup.string().required("Must enter a description").max(256)
   });
   const navigate = useNavigate()
 
@@ -19,22 +20,26 @@ export default function CreateGame() {
       name: "",
       link: "",
       image: "",
+      description: "",
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      chatAppHttpClient.createGameForUser(values, () => {
-        navigate("/games")
+      chatAppHttpClient.createApp(values, () => {
+        navigate("/apps")
       })
     },
   });
 
   return (
-    <Page pageTitle="Add Game" backRoute="/games">
+    <Page pageTitle="Publish App" backRoute="/apps">
       <form
         className="form profile__form"
         onSubmit={formik.handleSubmit}
         
       >
+      <p className="form__instructions">
+        Be sure the app allows iframing.
+      </p>
         <label className="label">
           Name
           <input
@@ -48,7 +53,7 @@ export default function CreateGame() {
         </label>
 
         <label className="label">
-          Link to the Game
+          Link to the App
           <input
             id="link"
             name="link"
@@ -60,7 +65,7 @@ export default function CreateGame() {
           <p className="form__error"> {formik.errors.link}</p>
         </label>
         <label className="label">
-          Image for the Game
+          Image for the App
           <input
             id="image"
             name="image"
@@ -71,8 +76,19 @@ export default function CreateGame() {
           />
           <p className="form__error"> {formik.errors.image}</p>
         </label>
-
-        <button type="submit" className="button button--submit">💾 Save</button>
+        <label className="label">
+          Description of the App
+          <textarea
+            id="description"
+            name="description"
+            onChange={formik.handleChange}
+            value={formik.values.description}
+            className="input"
+          >
+          </textarea>
+          <p className="form__error"> {formik.errors.description}</p>
+        </label>
+        <button type="submit" className="button button--submit">Publish</button>
       </form>
     </Page>
   );
