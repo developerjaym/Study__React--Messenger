@@ -1,5 +1,4 @@
 .friends__list {
-    padding-left: 3rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;

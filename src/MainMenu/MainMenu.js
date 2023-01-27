@@ -14,10 +14,6 @@ export default function MainMenu() {
     <Page transparent={true}>
       <div className="menu">
         <nav className="menu__area menu__area--others">
-          <Link to="apps" className="menu__item">
-            <span className="item__icon">{Icons.GAME}</span>
-            <label className="item__title">App Store</label>
-          </Link>
           {usersAppsOptions}
         </nav>
 
@@ -31,10 +27,14 @@ export default function MainMenu() {
             <span className="item__icon">{Icons.FRIENDS}</span>
             <label className="item__title">Friends</label>
           </Link>
-          <Link to="profile" className="menu__item">
+          <Link to="apps" className="menu__item">
+            <span className="item__icon">{Icons.GAME}</span>
+            <label className="item__title">App Store</label>
+          </Link>
+          {/* <Link to="profile" className="menu__item">
             <span className="item__icon">{Icons.PROFILE}</span>
             <label className="item__title">Profile</label>
-          </Link>
+          </Link> */}
         </nav>
         <Search label="Search Google" onSearch={search => navigate({pathname: '/search', search: `?term=${search.term}`})}/>
       </div>

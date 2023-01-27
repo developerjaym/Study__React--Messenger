@@ -3,8 +3,11 @@
     - After I submit the login form, it hangs for a second
 6. Conversations stuff
     - Search messages    
-7. Security stuff
-    - See the hundred TODO comments in the python code    
 8. App stuff
     - Delete app 
 9. OG stuff
+10. It doesnt look right rotated in phone mode
+11. Save settings?
+    - background image?
+    - message alert sound?
+    
